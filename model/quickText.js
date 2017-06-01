@@ -3,7 +3,7 @@ class QuickText extends createjs.Text {
   {
     super();
     let defaultSets = Object.assign({}, {
-      text: "", color: "#EEE", font: "20px ArcadeClassic"
+      text: "", color: "#EEE", font: "20px Montserrat"
     }, props);
     this.set(defaultSets);
   }

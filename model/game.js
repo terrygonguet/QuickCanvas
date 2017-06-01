@@ -31,7 +31,7 @@ class Game extends createjs.Stage {
       super.update(e);
     }
     game.rendertime += (performance.now() - time);
-    this.txtrendertime.text = this.rendertime.toPrecision(3) + " ms render time";
+    this.txtrendertime.text = "render time " + this.rendertime.toPrecision(3) + " ms";
   }
 
   addChild (child) {

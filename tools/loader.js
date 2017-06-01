@@ -57,9 +57,6 @@ const debug = false;
     stage.update();
     game = new Game("game");
     resizeCanvas();
-    game.canvas.onclick = function () {
-      game.canvas.requestPointerLock();
-    };
   }
 
   function handleFileLoad	(e) {
