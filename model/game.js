@@ -24,14 +24,13 @@ class Game extends createjs.Stage {
   }
 
   update (e) {
-    this.txtFps.text = createjs.Ticker.getMeasuredFPS().toFixed(0) + " FPS";
-    this.rendertime = 0;
     let time = performance.now();
-    if (!e.paused) {
-      super.update(e);
-    }
+    e.sdelta = e.delta / 1000;
+    this.txtFps.text = (debug ? createjs.Ticker.getMeasuredFPS().toFixed(0) + " FPS" : "");
+    this.rendertime = 0;
+    super.update(e);
     game.rendertime += (performance.now() - time);
-    this.txtrendertime.text = "render time " + this.rendertime.toPrecision(3) + " ms";
+    this.txtrendertime.text = (debug ? "render time " + this.rendertime.toPrecision(3) + " ms" : "");
   }
 
   addChild (child) {

@@ -35,7 +35,7 @@ class Input extends createjs.EventDispatcher {
     window.addEventListener("focus", e => this.getEvent(e), false);
     window.addEventListener("blur", e => this.getEvent(e), false);
     $("#game").on("contextmenu", null, null, false); // to prevent right click menu
-    document.addEventListener("pointerlockchange",  () => {});
+    // document.addEventListener("pointerlockchange",  () => {});
   }
 
   getEvent (e) {
@@ -95,12 +95,8 @@ class Input extends createjs.EventDispatcher {
           this.mouseDelta = $V([0,0]);
         break;
     }
-    custEvent.original = e;
     custEvent.type && this.dispatchEvent(custEvent);
-
-    const defEvent = new createjs.Event(e.type);
-    defEvent.original = e;
-    this.dispatchEvent(defEvent);
+    this.dispatchEvent(e);
   }
 
   updateDelta() {
