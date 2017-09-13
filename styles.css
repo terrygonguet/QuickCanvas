@@ -12,3 +12,9 @@ html, body {
 	display: block;
   background-color: #111;
 }
+
+#gameWrapper {
+	position: relative;
+	top: 0;
+	left: 0;
+}
