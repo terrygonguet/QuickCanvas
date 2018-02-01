@@ -1,11 +1,12 @@
 /* Loads all the necessary game files and handles loading screen */
 
 /** Only globals allowed :
- *  game, input, queue, debug
+ *  game, input, queue, debug, config
  */
 var game;
 const queue = new createjs.LoadQueue();
-const debug = true;
+var debug = true;
+const TP = {}; // Namespace
 
 (function () {
   queue.on("complete", handleComplete, this);
@@ -40,13 +41,13 @@ const debug = true;
     {id: "Tools", src:"tools/tools.js"},
     {id: "Input Manager", src:"tools/input.js"},
     {id: "Game", src:"model/game.js"},
+    {id: "Config", src:"model/config.js"},
 
-    {id: "QuickText", src:"model/quickText.js"}
+    {id: "QuickText", src:"model/quickText.js"},
 
     // Sprites ----------------------------------------
 
     // Sounds ----------------------------------------
-
   ];
   queue.loadManifest(queue.manifest);
 
