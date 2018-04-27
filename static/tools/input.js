@@ -123,19 +123,11 @@ class InputManager extends createjs.EventDispatcher {
         switch (e.button) {
           case 0:
             this.keys.mouse1 = true;
-<<<<<<< HEAD:static/tools/input.js
             custEvents.push("mouse1");
             break;
           case 2:
             this.keys.mouse2 = true;
             custEvents.push("mouse2");
-=======
-            custEvent.type = "mouse1";
-            break;
-          case 2:
-            this.keys.mouse2 = true;
-            custEvent.type = "mouse2";
->>>>>>> 50c9d35a0aab31531b91adf64ce94a9e264dd569:tools/input.js
             break;
         }
         break;
@@ -143,7 +135,6 @@ class InputManager extends createjs.EventDispatcher {
         switch (e.button) {
           case 0:
             this.keys.mouse1 = false;
-<<<<<<< HEAD:static/tools/input.js
             custEvents.push("mouse1U");
             break;
           case 2:
@@ -154,19 +145,6 @@ class InputManager extends createjs.EventDispatcher {
         break;
       case "keydown":
         if (this.ignoredKeys.indexOf(e.key) !== -1) break;
-=======
-            custEvent.type = "mouse1U";
-            break;
-          case 2:
-            this.keys.mouse2 = false;
-            custEvent.type = "mouse2U";
-            break;
-        }
-        break;
-      case "keydown": {
-        if (this.ignoredKeys.indexOf(e.key) !== -1) break;
-        e.preventDefault();
->>>>>>> 50c9d35a0aab31531b91adf64ce94a9e264dd569:tools/input.js
         if (!this.enabledListeners[e.type]) {
           Object.keys(this.keys).forEach(k => {
             k !== "mouse1" && k !== "mouse2" && (this.keys[k] = false);
@@ -174,63 +152,36 @@ class InputManager extends createjs.EventDispatcher {
           Object.keys(this.keyboard).forEach(k => this.keyboard[k] = false);
           break;
         }
-<<<<<<< HEAD:static/tools/input.js
         e.preventDefault();
-=======
->>>>>>> 50c9d35a0aab31531b91adf64ce94a9e264dd569:tools/input.js
         // patterns
         this.lastkeys = (e.key + this.lastkeys).slice(0,500);
         for (var pattern in this.keypatterns) {
           if (this.keypatterns.hasOwnProperty(pattern)) {
             if (this.lastkeys.startsWith(this.keypatterns[pattern])) {
               this.dispatchEvent(pattern);
-<<<<<<< HEAD:static/tools/input.js
               this.lastkeys = this.lastkeys.slice(this.keypatterns[pattern].length-1);
-=======
-              this.lastkeys = this.lastkeys.slice(this.keypatterns[pattern]);
->>>>>>> 50c9d35a0aab31531b91adf64ce94a9e264dd569:tools/input.js
             }
           }
         }
 
         this.keys[e.key] = true;
-<<<<<<< HEAD:static/tools/input.js
         custEvents = custEvents.concat(Object.keys(this.bindings).filter(key => {
-=======
-        let type = Object.keys(this.bindings).filter(key => {
->>>>>>> 50c9d35a0aab31531b91adf64ce94a9e264dd569:tools/input.js
           if (this.bindings[key].indexOf(e.key) != -1) {
             this.keys[key] = true;
             return true;
           }
-<<<<<<< HEAD:static/tools/input.js
         }));
         break;
       case "keyup":
         if (this.ignoredKeys.indexOf(e.key) !== -1) break;
         this.keys[e.key] = false;
         custEvents = custEvents.concat(Object.keys(this.bindings).filter(key => {
-=======
-        });
-        custEvent.type = (type.length ? type : ""); // custom binding event if we found a keybind
-        } break;
-      case "keyup": {
-        if (this.ignoredKeys.indexOf(e.key) !== -1) break;
-        this.keys[e.key] = false;
-        let type = Object.keys(this.bindings).filter(key => {
->>>>>>> 50c9d35a0aab31531b91adf64ce94a9e264dd569:tools/input.js
           if (this.bindings[key].indexOf(e.key) != -1) {
             this.keys[key] = false;
             return true;
           }
-<<<<<<< HEAD:static/tools/input.js
         }).map(t => t+"U"));
         break;
-=======
-        });
-        custEvent.type = (type.length ? type.map(t => t+"U") : "");  // custom binding event if we found a keybind
-        } break;
->>>>>>> 50c9d35a0aab31531b91adf64ce94a9e264dd569:tools/input.js
       case "focus" : break;
       case "blur" :
         if (!this.enabledListeners[e.type]) break;
@@ -249,16 +200,8 @@ class InputManager extends createjs.EventDispatcher {
     }
     this.dispatchEvent(e);
     // dispatch additionnal event if we found one and the native event didnt get stopped
-<<<<<<< HEAD:static/tools/input.js
     if (custEvents.length && !e.cancelBubble) {
       custEvents.forEach(ev => this.dispatchEvent(_.assign(new createjs.Event(ev), { originalEvent:e })));
-=======
-    if (custEvent.type && !e.cancelBubble) {
-      if (custEvent.type instanceof Array) {
-        custEvent.type.forEach(ev => this.dispatchEvent(ev));
-      } else
-        this.dispatchEvent(custEvent);
->>>>>>> 50c9d35a0aab31531b91adf64ce94a9e264dd569:tools/input.js
     }
   }
 
